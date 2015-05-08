@@ -1,0 +1,59 @@
+# -*- coding: cp936 -*-
+import jieba
+import codecs
+import math
+#首先把文本分词
+def fenci(text):
+    tx = open(text).read()
+    doc = jieba.cut(tx)
+    return doc
+#text1 = "C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt"
+#text2 = "C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt"
+doc_a = fenci('C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt')
+doc_b = fenci('C:/Users/Administrator/Desktop/主题抽取/TextRank/text/02.txt')
+doc_a_list = [] #存储doc_a的列表
+doc_b_list = [] #存储doc_b的列表
+for i in doc_a:          #把doc_a存储在列表中
+    doc_a_list.append(i)
+for j in doc_b:           #把doc_b存储到列表中 
+    doc_b_list.append(j)
+
+
+
+#提取关键词
+keywordslist = ["中国","国家","领导人","发展","改革","大家","当前","工作","政策","积极"]
+
+#计算向量
+vector_a = []
+vector_b = []
+length = len(keywordslist)
+length_a = len(doc_a_list)
+length_b = len(doc_b_list)
+for x in range(0,length):
+    count_a = 0
+    for y in range(0,length_a):
+        if keywordslist[x] == doc_a_list[y]:
+            count_a = count_a + 1
+        vector_a.append(count_a)
+for m in range(0,length):
+    count_b = 0
+    for n in range(0,length_b):
+        if keywordslist[m] == doc_b_list[n]:
+            count_b = count_b + 1
+        vector_b.append(count_b)
+#计算余弦值
+fz = 0
+for num_1 in range(0,length):
+    fz = fz + vector_a[num_1]*vector_b[num_1]
+
+fm_a = 0
+fm_b = 0
+for num_2 in range(0,length):
+    fm_a = fm_a + vector_a[num_2]*vector_a[num_2]
+    fm_b = fm_b + vector_b[num_2]*vector_b[num_2]
+fm = math.sqrt(fm_a) + math.sqrt(fm_b)
+#yx = fz/fm
+print "两个文档的相关度为："
+print length_a
+print doc_a_list
+print keywordslist
