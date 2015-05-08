@@ -7,10 +7,12 @@ def fenci(text):
     tx = open(text).read()
     doc = jieba.cut(tx)
     return doc
-#text1 = "C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt"
-#text2 = "C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt"
-doc_a = fenci('C:/Users/Administrator/Desktop/主题抽取/TextRank/text/01.txt')
-doc_b = fenci('C:/Users/Administrator/Desktop/主题抽取/TextRank/text/02.txt')
+
+
+text1 = open(filename,r).read()
+text2 = open(filename,r).read()
+doc_a = fenci(text1)
+doc_b = fenci(text2)
 doc_a_list = [] #存储doc_a的列表
 doc_b_list = [] #存储doc_b的列表
 for i in doc_a:          #把doc_a存储在列表中
