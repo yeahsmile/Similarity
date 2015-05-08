@@ -52,8 +52,6 @@ for num_2 in range(0,length):
     fm_a = fm_a + vector_a[num_2]*vector_a[num_2]
     fm_b = fm_b + vector_b[num_2]*vector_b[num_2]
 fm = math.sqrt(fm_a) + math.sqrt(fm_b)
-#yx = fz/fm
+yx = fz/fm
 print "两个文档的相关度为："
-print length_a
-print doc_a_list
-print keywordslist
+print yx
